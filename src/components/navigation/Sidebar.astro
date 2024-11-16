@@ -1,0 +1,54 @@
+---
+    const filterSections = [
+      {
+        title: 'Régions',
+        items: [
+          'Afrique du Nord',
+          'Afrique de l\'Ouest',
+          'Afrique Centrale',
+          'Afrique de l\'Est',
+          'Afrique Australe'
+        ]
+      },
+      {
+        title: 'Type d\'Élection',
+        items: [
+          'Présidentielle',
+          'Législative',
+          'Municipale',
+          'Référendum'
+        ]
+      },
+      {
+        title: 'Statut',
+        items: [
+          'Prochaine Élection',
+          'Élection Récente',
+          'En Cours de Préparation'
+        ]
+      }
+    ];
+    ---
+
+    <aside class="w-64 bg-gray-100 p-4 rounded-lg">
+      <h2 class="text-xl font-semibold mb-4 text-africa-primary">Filtres</h2>
+      
+      {filterSections.map(section => (
+        <div class="mb-6">
+          <h3 class="font-bold mb-2 text-africa-secondary">{section.title}</h3>
+          <ul class="space-y-2">
+            {section.items.map(item => (
+              <li>
+                <label class="inline-flex items-center">
+                  <input 
+                    type="checkbox" 
+                    class="form-checkbox text-africa-accent"
+                  />
+                  <span class="ml-2 text-gray-700">{item}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </aside>

@@ -1,0 +1,69 @@
+---
+    import MainLayout from '../../layouts/MainLayout.astro';
+    import Breadcrumbs from '../../components/Breadcrumbs.tsx';
+    import CountryCard from '../../components/countries/CountryCard.tsx';
+    import DemographicChart from '../../components/countries/DemographicChart.tsx';
+    import LegalFramework from '../../components/countries/LegalFramework.tsx';
+    import countriesData from '../../data/countries-extended.json';
+
+    export function getStaticPaths() {
+      return countriesData.countries.map(country => ({
+        params: { code: country.code },
+        props: { country }
+      }));
+    }
+
+    const { country } = Astro.props;
+    ---
+
+    <MainLayout 
+      title={`${country.name} - Informations Électorales`} 
+      activePage="countries"
+    >
+      <Breadcrumbs 
+        client:load 
+        items={[
+          { label: 'Accueil', href: '/' },
+          { label: 'Pays', href: '/countries' },
+          { label: country.name }
+        ]} 
+      />
+
+      <div class="space-y-8">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-1">
+            <CountryCard 
+              client:load 
+              country={{
+                code: country.code,
+                name: country.name,
+                population: country.population,
+                lastElection: country.lastElection,
+                politicalSystem: country.politicalSystem
+              }} 
+            />
+          </div>
+          
+          <div class="md:col-span-2 bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-bold mb-6 text-africa-primary">
+              Données Démographiques
+            </h2>
+            <DemographicChart 
+              client:visible 
+              demographics={country.demographics} 
+            />
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-6 text-africa-primary">
+            Cadre Juridique
+          </h2>
+          <LegalFramework 
+            client:visible 
+            documents={country.legalFramework.documents}
+            timeline={country.legalFramework.timeline}
+          />
+        </div>
+      </div>
+    </MainLayout>

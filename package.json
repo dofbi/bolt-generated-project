@@ -1,0 +1,29 @@
+{
+      "name": "elections-africa",
+      "version": "0.1.0",
+      "private": true,
+      "type": "module",
+      "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "typecheck": "astro check"
+      },
+      "dependencies": {
+        "@astrojs/react": "^3.0.0",
+        "@astrojs/tailwind": "^5.0.0",
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "astro": "^3.0.0",
+        "chart.js": "^4.4.0",
+        "react": "^18.2.0",
+        "react-chartjs-2": "^5.2.0",
+        "react-dom": "^18.2.0",
+        "react-icons": "^4.11.0",
+        "tailwindcss": "^3.3.3"
+      },
+      "devDependencies": {
+        "typescript": "^5.1.6"
+      }
+    }

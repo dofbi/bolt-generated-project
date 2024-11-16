@@ -1,0 +1,25 @@
+---
+    import MainLayout from '../../layouts/MainLayout.astro';
+    import Breadcrumbs from '../../components/Breadcrumbs.tsx';
+    import CountryList from '../../components/CountryList.tsx';
+    import countries from '../../data/countries.json';
+    ---
+
+    <MainLayout 
+      title="Liste des Pays" 
+      activePage="countries"
+    >
+      <Breadcrumbs 
+        client:load 
+        items={[
+          { label: 'Accueil', href: '/' },
+          { label: 'Pays' }
+        ]} 
+      />
+
+      <h1 class="text-3xl font-bold mb-6 text-africa-primary">
+        Pays Africains
+      </h1>
+
+      <CountryList countries={countries.countries} client:load />
+    </MainLayout>

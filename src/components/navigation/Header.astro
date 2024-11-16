@@ -1,0 +1,44 @@
+---
+    interface Props {
+      activePage?: string;
+    }
+
+    const { activePage = 'home' } = Astro.props;
+
+    const menuItems = [
+      { href: '/', label: 'Accueil', slug: 'home' },
+      { href: '/countries', label: 'Pays', slug: 'countries' },
+      { href: '/cso', label: 'Organisations', slug: 'cso' },
+      { href: '/elections', label: 'Élections', slug: 'elections' },
+      { href: '/about', label: 'À Propos', slug: 'about' }
+    ];
+    ---
+
+    <header class="bg-africa-primary text-white py-4">
+      <div class="container mx-auto flex justify-between items-center px-4">
+        <div class="flex items-center">
+          <img src="/logo.svg" alt="Africa Elections Logo" class="h-10 mr-4"/>
+          <h1 class="text-2xl font-bold">Africa Elections</h1>
+        </div>
+        
+        <nav>
+          <ul class="flex space-x-6">
+            {menuItems.map(item => (
+              <li>
+                <a 
+                  href={item.href} 
+                  class={`
+                    ${activePage === item.slug 
+                      ? 'text-africa-accent font-bold' 
+                      : 'text-white hover:text-gray-300'}
+                    transition-colors duration-300
+                  `}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>

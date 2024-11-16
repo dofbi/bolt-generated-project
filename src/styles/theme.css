@@ -1,0 +1,21 @@
+@tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+
+    :root {
+      --color-primary: #2C3E50;
+      --color-secondary: #3498DB;
+      --color-accent: #27AE60;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 1200px) {
+      .container {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+    }

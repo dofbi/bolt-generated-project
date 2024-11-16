@@ -1,0 +1,235 @@
+---
+    import MainLayout from '../layouts/MainLayout.astro';
+    import Icon from '../components/common/Icon';
+    import countriesData from '../data/countries-extended.json';
+    import csoData from '../data/cso-extended.json';
+
+    const heroStats = [
+      { 
+        icon: 'globe', 
+        value: '54', 
+        label: 'Pays Africains',
+        color: 'text-[#3498DB]'
+      },
+      { 
+        icon: 'users', 
+        value: '250', 
+        label: 'Organisations',
+        color: 'text-[#27AE60]'
+      },
+      { 
+        icon: 'balance', 
+        value: '12', 
+        label: 'Élections à Venir',
+        color: 'text-[#E74C3C]'
+      }
+    ];
+
+    const features = [
+      {
+        icon: 'globe',
+        title: 'Centralisation',
+        description: 'Accès unifié aux informations électorales',
+        color: 'bg-blue-50',
+        iconColor: 'text-blue-500'
+      },
+      {
+        icon: 'balance',
+        title: 'Cadre Juridique',
+        description: 'Documentation complète des lois électorales',
+        color: 'bg-green-50',
+        iconColor: 'text-green-500'
+      },
+      {
+        icon: 'users',
+        title: 'Réseau d\'OSC',
+        description: 'Collaboration entre organisations de la société civile',
+        color: 'bg-purple-50',
+        iconColor: 'text-purple-500'
+      }
+    ];
+
+    const featuredCountries = countriesData.countries.slice(0, 3);
+    ---
+
+    <MainLayout title="Accueil - Africa Elections" activePage="home">
+      <!-- Hero Section -->
+      <div class="relative bg-gradient-to-br from-[#2C3E50] to-[#3498DB] text-white overflow-hidden">
+        <div class="container mx-auto px-4 py-16 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">
+              Observatoire des Élections en Afrique
+            </h1>
+            <p class="text-xl md:text-2xl mb-12 text-gray-100 animate-fade-in-delay">
+              Une plateforme collaborative pour renforcer la transparence, 
+              l'intégrité et la participation démocratique à travers le continent.
+            </p>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+              <a 
+                href="/countries" 
+                class="btn bg-white text-[#2C3E50] hover:bg-gray-100 animate-bounce-in"
+              >
+                Explorer les Pays
+              </a>
+              <a 
+                href="/about" 
+                class="btn border-2 border-white text-white hover:bg-white/10 animate-bounce-in-delay"
+              >
+                Notre Mission
+              </a>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              {heroStats.map(stat => (
+                <div class="bg-white/10 rounded-lg p-6 text-center transform hover:scale-105 transition-transform">
+                  <div class={`text-5xl font-bold mb-2 ${stat.color}`}>
+                    {stat.value}
+                  </div>
+                  <div class="flex items-center justify-center gap-2">
+                    <Icon name={stat.icon} className="text-xl" />
+                    <span>{stat.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Background Shapes -->
+        <div class="absolute inset-0 opacity-20">
+          <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full transform rotate-45"></div>
+          <div class="absolute bottom-0 left-0 w-72 h-72 bg-white/10 rounded-full transform -rotate-45"></div>
+        </div>
+      </div>
+
+      <!-- Features Section -->
+      <div class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12 text-[#2C3E50]">
+          Notre Approche
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          {features.map(feature => (
+            <div class={`${feature.color} rounded-lg p-8 text-center transform hover:scale-105 transition-transform`}>
+              <div class="inline-block p-4 rounded-full mb-6">
+                <Icon 
+                  name={feature.icon} 
+                  className={`text-5xl ${feature.iconColor}`}
+                />
+              </div>
+              <h3 class="text-xl font-bold mb-4 text-[#2C3E50]">
+                {feature.title}
+              </h3>
+              <p class="text-gray-600">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Featured Countries -->
+      <div class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+          <h2 class="text-3xl font-bold text-center mb-12 text-[#2C3E50]">
+            Pays à la Une
+          </h2>
+          <div class="grid md:grid-cols-3 gap-8">
+            {featuredCountries.map(country => (
+              <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform">
+                <div class="h-48 bg-gray-100 relative">
+                  <img 
+                    src={`/images/flags/${country.code.toLowerCase()}.svg`}
+                    alt={`Drapeau ${country.name}`}
+                    class="w-full h-full object-cover"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  <h3 class="absolute bottom-4 left-4 text-2xl font-bold text-white">
+                    {country.name}
+                  </h3>
+                </div>
+                <div class="p-6">
+                  <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div>
+                      <div class="text-sm text-gray-600">Prochaine Élection</div>
+                      <div class="font-semibold text-[#3498DB]">
+                        {country.lastElection.nextElectionYear}
+                      </div>
+                    </div>
+                    <div>
+                      <div class="text-sm text-gray-600">Type</div>
+                      <div class="font-semibold">
+                        {country.lastElection.type}
+                      </div>
+                    </div>
+                  </div>
+                  <a 
+                    href={`/countries/${country.code}`}
+                    class="block w-full bg-[#3498DB] text-white text-center px-4 py-2 rounded-lg hover:bg-opacity-90"
+                  >
+                    Voir les Détails
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="bg-gradient-to-br from-[#3498DB] to-[#2C3E50] text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+          <h2 class="text-4xl font-bold mb-6">
+            Rejoignez Notre Initiative
+          </h2>
+          <p class="text-xl mb-8 max-w-2xl mx-auto">
+            Contribuez au renforcement de la démocratie en Afrique 
+            en participant à notre réseau d'observateurs électoraux.
+          </p>
+          <div class="flex justify-center gap-4">
+            <a 
+              href="/join" 
+              class="btn bg-white text-[#3498DB] hover:bg-gray-100"
+            >
+              Devenir Membre
+            </a>
+            <a 
+              href="/contact" 
+              class="btn border-2 border-white text-white hover:bg-white/10"
+            >
+              Nous Contacter
+            </a>
+          </div>
+        </div>
+      </div>
+    </MainLayout>
+
+    <style>
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes bounceIn {
+        0% { opacity: 0; transform: scale(0.3); }
+        50% { opacity: 1; transform: scale(1.05); }
+        70% { transform: scale(0.9); }
+        100% { transform: scale(1); }
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 1s ease-out;
+      }
+
+      .animate-fade-in-delay {
+        animation: fadeIn 1s ease-out 0.5s backwards;
+      }
+
+      .animate-bounce-in {
+        animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .animate-bounce-in-delay {
+        animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.5s backwards;
+      }
+    </style>

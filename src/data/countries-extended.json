@@ -1,0 +1,67 @@
+{
+      "countries": [
+        {
+          "code": "DZ",
+          "name": "Algérie",
+          "population": 44700000,
+          "politicalSystem": "République Présidentielle",
+          "lastElection": {
+            "type": "Présidentielle",
+            "year": 2019,
+            "turnout": 49.6,
+            "nextElectionYear": 2024
+          },
+          "demographics": {
+            "ageGroups": [
+              { "group": "0-14", "percentage": 25.3 },
+              { "group": "15-24", "percentage": 16.5 },
+              { "group": "25-54", "percentage": 42.2 },
+              { "group": "55+", "percentage": 16 }
+            ],
+            "gender": {
+              "male": 50.5,
+              "female": 49.5
+            },
+            "voterRegistration": {
+              "registered": 23000000,
+              "eligible": 28000000
+            }
+          },
+          "legalFramework": {
+            "documents": [
+              {
+                "title": "Constitution Algérienne",
+                "type": "Constitution",
+                "year": 2020,
+                "url": "https://www.joradp.dz/constitution",
+                "description": "Dernière révision constitutionnelle"
+              },
+              {
+                "title": "Code Électoral",
+                "type": "Loi Organique",
+                "year": 2016,
+                "url": "https://www.joradp.dz/electoral-code",
+                "description": "Régissant les processus électoraux"
+              }
+            ],
+            "timeline": [
+              {
+                "year": 1962,
+                "event": "Indépendance et Première Constitution",
+                "type": "constitution"
+              },
+              {
+                "year": 1989,
+                "event": "Adoption du Multipartisme",
+                "type": "amendment"
+              },
+              {
+                "year": 2016,
+                "event": "Réforme du Code Électoral",
+                "type": "election-law"
+              }
+            ]
+          }
+        }
+      ]
+    }
